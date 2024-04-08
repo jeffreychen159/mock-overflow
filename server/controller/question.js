@@ -10,7 +10,7 @@ const router = express.Router();
 const getQuestionsByFilter = async (req, res) => {
     let content = req.body;
 
-    const questions = await Question.find().populate();
+    const questions = await Question.find().populate({path: 'tags'});
 
     let s = filterQuestionsBySearch(questions, content.search);
 
