@@ -47,6 +47,9 @@ on:
 jobs:
   jest-tests:
     runs-on: self-hosted
+    defaults:
+      run: 
+        working-directory: ./server
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -61,6 +64,9 @@ jobs:
 
   cypress-tests:
     runs-on: self-hosted
+    defaults:
+      run: 
+        working-directory: ./client/cypress
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -71,5 +77,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Cypress tests
+        working-directory: ./client/
         run: npm run cy:run
 
