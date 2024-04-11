@@ -6,7 +6,7 @@ const router = express.Router();
 
 const getTagsWithQuestionNumber = async (req, res) => {
     let content = await Tag.find();
-    let questions = await Question.find().populate();
+    let questions = await Question.find().populate({path: "tags"});
     let map = new Map();
     for (let c of content) {
         map.set(c.name, 0);
@@ -22,6 +22,8 @@ const getTagsWithQuestionNumber = async (req, res) => {
 
     let arr = [];
     map.forEach((qcnt, name) => arr.push({name, qcnt}));
+
+    console.log(arr);
 
     res.send(arr);
 };
