@@ -7,7 +7,7 @@ import AnswerPage from "./answerPage";
 import NewQuestion from "./newQuestion";
 import NewAnswer from "./newAnswer";
 
-const Main = ({ search = "", title, setQuesitonPage }) => {
+const Main = ({ search = "", title, setQuestionPage }) => {
     const [page, setPage] = useState("home");
     const [questionOrder, setQuestionOrder] = useState("newest");
     const [qid, setQid] = useState("");
@@ -15,7 +15,7 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
     let content = null;
 
     const handleQuestions = () => {
-        setQuesitonPage();
+        setQuestionPage();
         setPage("home");
     };
 
@@ -29,7 +29,7 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
     };
 
     const clickTag = (tname) => {
-        setQuesitonPage("[" + tname + "]", tname);
+        setQuestionPage("[" + tname + "]", tname);
         setPage("home");
     };
 
