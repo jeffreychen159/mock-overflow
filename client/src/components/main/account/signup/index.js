@@ -1,10 +1,10 @@
 import "./index.css";
 import { useState } from "react";
-import Form from "../baseComponents/form";
-import Input from "../baseComponents/input";
+import Form from "../../baseComponents/form";
+import Input from "../../baseComponents/input";
 import "./index.css";
 
-import { addAccount } from "../../../services/accountService";
+import { addAccount } from "../../../../services/accountService";
 
 const Signup = ({ handleQuestions }) => {
     const [username, setUsername] = useState("");

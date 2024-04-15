@@ -7,7 +7,7 @@ import { validateHyperlink } from "../../../tool";
 
 import { addQuestion } from "../../../services/questionService";
 
-const NewQuestion = ({ handleQuestions, handleSignup }) => {
+const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout }) => {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [tag, setTag] = useState("");
@@ -94,7 +94,7 @@ const NewQuestion = ({ handleQuestions, handleSignup }) => {
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        // loginPage();
+                        handleLogin();
                     }}>
                     Login
                 </button>
@@ -102,7 +102,7 @@ const NewQuestion = ({ handleQuestions, handleSignup }) => {
                     className="bluebtn_login"
                     id="logoutbtn"
                     onClick={() => {
-                        // logoutPage();
+                        handleLogout();
                     }}>
                     Logout
                 </button>

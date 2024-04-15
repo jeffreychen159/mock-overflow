@@ -6,7 +6,7 @@ import Textarea from "../baseComponents/textarea";
 import { validateHyperlink } from "../../../tool";
 import { addAnswer } from "../../../services/answerService";
 
-const NewAnswer = ({ qid, handleAnswer, handleSignup }) => {
+const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout }) => {
     const [usrn, setUsrn] = useState("");
     const [text, setText] = useState("");
     const [usrnErr, setUsrnErr] = useState("");
@@ -60,7 +60,7 @@ const NewAnswer = ({ qid, handleAnswer, handleSignup }) => {
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        // loginPage();
+                        handleLogin();
                     }}>
                     Login
                 </button>
@@ -68,7 +68,7 @@ const NewAnswer = ({ qid, handleAnswer, handleSignup }) => {
                     className="bluebtn_login"
                     id="logoutbtn"
                     onClick={() => {
-                        // logoutPage();
+                        handleLogout();
                     }}>
                     Logout
                 </button>

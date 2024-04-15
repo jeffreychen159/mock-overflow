@@ -6,12 +6,14 @@ import TagPage from "./tagPage";
 import AnswerPage from "./answerPage";
 import NewQuestion from "./newQuestion";
 import NewAnswer from "./newAnswer";
-import Signup from "./signup"
+import Signup from "./account/signup";
+import Login from "./account/login";
 
 const Main = ({ search = "", title, setQuestionPage }) => {
     const [page, setPage] = useState("home");
     const [questionOrder, setQuestionOrder] = useState("newest");
     const [qid, setQid] = useState("");
+    const [account, setAccount] = useState("");
     let selected = "";
     let content = null;
 
@@ -19,6 +21,12 @@ const Main = ({ search = "", title, setQuestionPage }) => {
         setQuestionPage();
         setPage("home");
     };
+
+    const handleNewLogin = (login) => {
+        setQuestionPage();
+        setAccount(login);
+        setPage("home");
+    }
 
     const handleTags = () => {
         setPage("tag");
@@ -46,6 +54,14 @@ const Main = ({ search = "", title, setQuestionPage }) => {
         setPage("signup");
     }
 
+    const handleLogin = () => {
+        setPage("login");
+    }
+
+    const handleLogout = () => {
+        setAccount("");
+    }
+
     const getQuestionPage = (order = "newest", search = "") => {
         return (
             <QuestionPage
@@ -57,6 +73,8 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 handleAnswer={handleAnswer}
                 handleNewQuestion={handleNewQuestion}
                 handleSignup={handleSignup}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
             />
         );
     };
@@ -74,6 +92,8 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     clickTag={clickTag}
                     handleNewQuestion={handleNewQuestion}
                     handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
                 />
             );
             break;
@@ -86,6 +106,8 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     handleNewQuestion={handleNewQuestion}
                     handleNewAnswer={handleNewAnswer}
                     handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
                 />
             );
             break;
@@ -96,6 +118,8 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 <NewQuestion 
                     handleQuestions={handleQuestions} 
                     handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
                 />;
             break;
         }
@@ -106,6 +130,8 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     qid={qid} 
                     handleAnswer={handleAnswer}
                     handleSignup={handleSignup} 
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
                 />;
             break;
         }
@@ -113,6 +139,12 @@ const Main = ({ search = "", title, setQuestionPage }) => {
         case "signup": {
             selected = "";
             content = <Signup handleQuestions={handleQuestions} />
+            break;
+        }
+
+        case "login": {
+            selected = "";
+            content = <Login handleNewLogin={handleNewLogin} />
             break;
         }
         default:
@@ -127,6 +159,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 selected={selected}
                 handleQuestions={handleQuestions}
                 handleTags={handleTags}
+                account={account}
             />
             <div id="right_main" className="right_main">
                 {content}

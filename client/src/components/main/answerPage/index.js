@@ -7,7 +7,7 @@ import QuestionBody from "./questionBody";
 import { getQuestionById } from "../../../services/questionService";
 
 // Component for the Answers page
-const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup }) => {
+const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, handleLogin, handleLogout }) => {
     const [question, setQuestion] = useState({});
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +32,7 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup }) =
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        // loginPage();
+                        handleLogin();
                     }}> 
                         Login
                 </button>
@@ -40,7 +40,7 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup }) =
                     className="bluebtn_login"
                     id="logoutbtn"
                     onClick={() => {
-                        // logoutPage();
+                        handleLogout();
                     }}> 
                         Logout
                 </button>

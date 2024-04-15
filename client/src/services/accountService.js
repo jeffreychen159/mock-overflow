@@ -9,4 +9,10 @@ const addAccount = async (a) => {
     return res.data;
 };
 
-export { addAccount };
+const authenticateAccount = async (username, password) => {
+    const res = await api.get(`${ACCOUNT_API_URL}/authenticateAccount?username=${username}&password=${password}`);
+
+    return res.data;
+}
+
+export { addAccount, authenticateAccount };

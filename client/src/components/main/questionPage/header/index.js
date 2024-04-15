@@ -7,6 +7,8 @@ const QuestionHeader = ({
     setQuestionOrder,
     handleNewQuestion,
     handleSignup,
+    handleLogin,
+    handleLogout, 
 }) => {
     return (
         <div>
@@ -23,7 +25,7 @@ const QuestionHeader = ({
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        // loginPage();
+                        handleLogin();
                     }}> 
                         Login
                 </button>
@@ -31,7 +33,7 @@ const QuestionHeader = ({
                     className="bluebtn_login"
                     id="logoutbtn"
                     onClick={() => {
-                        // logoutPage();
+                        handleLogout();
                     }}> 
                         Logout
                 </button>
