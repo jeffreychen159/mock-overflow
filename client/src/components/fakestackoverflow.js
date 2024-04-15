@@ -11,6 +11,7 @@ export default function FakeStackOverflow() {
         setSearch(search);
         setMainTitle(title);
     };
+
     return (
         <>
             <Header search={search} setQuestionPage={setQuestionPage} />

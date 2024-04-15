@@ -13,6 +13,7 @@ const QuestionPage = ({
     clickTag,
     handleAnswer,
     handleNewQuestion,
+    handleSignup,
 }) => {
     const [qlist, setQlist] = useState([]);
     useEffect(() => {
@@ -30,6 +31,7 @@ const QuestionPage = ({
                 qcnt={qlist.length}
                 setQuestionOrder={setQuestionOrder}
                 handleNewQuestion={handleNewQuestion}
+                handleSignup={handleSignup}
             />
             <div id="question_list" className="question_list">
                 {qlist.map((q, idx) => (

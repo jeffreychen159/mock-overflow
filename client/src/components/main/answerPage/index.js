@@ -7,7 +7,7 @@ import QuestionBody from "./questionBody";
 import { getQuestionById } from "../../../services/questionService";
 
 // Component for the Answers page
-const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer }) => {
+const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup }) => {
     const [question, setQuestion] = useState({});
     useEffect(() => {
         const fetchData = async () => {
@@ -19,6 +19,32 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer }) => {
 
     return (
         <>
+            <div id="login" className="header_button">
+                <button
+                    className="bluebtn_login"
+                    id="signupbtn"
+                    onClick={() => {
+                        handleSignup();
+                    }}> 
+                        Signup
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="loginbtn"
+                    onClick={() => {
+                        // loginPage();
+                    }}> 
+                        Login
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="logoutbtn"
+                    onClick={() => {
+                        // logoutPage();
+                    }}> 
+                        Logout
+                </button>
+            </div>
             <AnswerHeader
                 ansCount={
                     question && question.answers && question.answers.length

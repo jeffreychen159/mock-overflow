@@ -22,9 +22,7 @@ const getTagsWithQuestionNumber = async (req, res) => {
 
     let arr = [];
     map.forEach((qcnt, name) => arr.push({name, qcnt}));
-
-    console.log(arr);
-
+    
     res.send(arr);
 };
 

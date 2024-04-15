@@ -6,6 +6,7 @@ import TagPage from "./tagPage";
 import AnswerPage from "./answerPage";
 import NewQuestion from "./newQuestion";
 import NewAnswer from "./newAnswer";
+import Signup from "./signup"
 
 const Main = ({ search = "", title, setQuestionPage }) => {
     const [page, setPage] = useState("home");
@@ -41,6 +42,10 @@ const Main = ({ search = "", title, setQuestionPage }) => {
         setPage("newAnswer");
     };
 
+    const handleSignup = () => {
+        setPage("signup");
+    }
+
     const getQuestionPage = (order = "newest", search = "") => {
         return (
             <QuestionPage
@@ -51,6 +56,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 clickTag={clickTag}
                 handleAnswer={handleAnswer}
                 handleNewQuestion={handleNewQuestion}
+                handleSignup={handleSignup}
             />
         );
     };
@@ -67,6 +73,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 <TagPage
                     clickTag={clickTag}
                     handleNewQuestion={handleNewQuestion}
+                    handleSignup={handleSignup}
                 />
             );
             break;
@@ -78,18 +85,34 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     qid={qid}
                     handleNewQuestion={handleNewQuestion}
                     handleNewAnswer={handleNewAnswer}
+                    handleSignup={handleSignup}
                 />
             );
             break;
         }
         case "newQuestion": {
             selected = "";
-            content = <NewQuestion handleQuestions={handleQuestions} />;
+            content = 
+                <NewQuestion 
+                    handleQuestions={handleQuestions} 
+                    handleSignup={handleSignup}
+                />;
             break;
         }
         case "newAnswer": {
             selected = "";
-            content = <NewAnswer qid={qid} handleAnswer={handleAnswer} />;
+            content = 
+                <NewAnswer 
+                    qid={qid} 
+                    handleAnswer={handleAnswer}
+                    handleSignup={handleSignup} 
+                />;
+            break;
+        }
+
+        case "signup": {
+            selected = "";
+            content = <Signup handleQuestions={handleQuestions} />
             break;
         }
         default:

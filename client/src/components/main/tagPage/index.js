@@ -3,7 +3,7 @@ import "./index.css";
 import Tag from "./tag";
 import { getTagsWithQuestionNumber } from "../../../services/tagService";
 
-const TagPage = ({ clickTag, handleNewQuestion }) => {
+const TagPage = ({ clickTag, handleNewQuestion, handleSignup }) => {
     const [tlist, setTlist] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -15,6 +15,32 @@ const TagPage = ({ clickTag, handleNewQuestion }) => {
     }, []);
     return (
         <>
+            <div id="login" className="header_button">
+                <button
+                    className="bluebtn_login"
+                    id="signupbtn"
+                    onClick={() => {
+                        handleSignup();
+                    }}> 
+                        Signup
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="loginbtn"
+                    onClick={() => {
+                        // loginPage();
+                    }}> 
+                        Login
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="logoutbtn"
+                    onClick={() => {
+                        // logoutPage();
+                    }}> 
+                        Logout
+                </button>
+            </div>
             <div className="space_between right_padding">
                 <div className="bold_title">{tlist.length} Tags</div>
                 <div className="bold_title">All Tags</div>

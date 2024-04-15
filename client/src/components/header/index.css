@@ -10,9 +10,9 @@
 .login_btn_group {
     display: block;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-right;
     height: 10%;
-    width: 10%;
+    width: 20%;
     background: #dddddd;
 }
 

@@ -6,7 +6,7 @@ import Textarea from "../baseComponents/textarea";
 import { validateHyperlink } from "../../../tool";
 import { addAnswer } from "../../../services/answerService";
 
-const NewAnswer = ({ qid, handleAnswer }) => {
+const NewAnswer = ({ qid, handleAnswer, handleSignup }) => {
     const [usrn, setUsrn] = useState("");
     const [text, setText] = useState("");
     const [usrnErr, setUsrnErr] = useState("");
@@ -46,35 +46,66 @@ const NewAnswer = ({ qid, handleAnswer }) => {
         }
     };
     return (
-        <Form>
-            <Input
-                title={"Username"}
-                id={"answerUsernameInput"}
-                val={usrn}
-                setState={setUsrn}
-                err={usrnErr}
-            />
-            <Textarea
-                title={"Answer Text"}
-                id={"answerTextInput"}
-                val={text}
-                setState={setText}
-                err={textErr}
-            />
-            <div className="btn_indicator_container">
+        <div>
+            <div id="login" className="header_button">
                 <button
-                    className="form_postBtn"
+                    className="bluebtn_login"
+                    id="signupbtn"
                     onClick={() => {
-                        postAnswer();
-                    }}
-                >
-                    Post Answer
+                        handleSignup();
+                    }}>
+                    Signup
                 </button>
-                <div className="mandatory_indicator">
-                    * indicates mandatory fields
-                </div>
+                <button
+                    className="bluebtn_login"
+                    id="loginbtn"
+                    onClick={() => {
+                        // loginPage();
+                    }}>
+                    Login
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="logoutbtn"
+                    onClick={() => {
+                        // logoutPage();
+                    }}>
+                    Logout
+                </button>
             </div>
-        </Form>
+            <div className="header_buffer">
+                &nbsp;
+            </div>
+            <Form>
+                <Input
+                    title={"Username"}
+                    id={"answerUsernameInput"}
+                    val={usrn}
+                    setState={setUsrn}
+                    err={usrnErr}
+                />
+                <Textarea
+                    title={"Answer Text"}
+                    id={"answerTextInput"}
+                    val={text}
+                    setState={setText}
+                    err={textErr}
+                />
+                <div className="btn_indicator_container">
+                    <button
+                        className="form_postBtn"
+                        onClick={() => {
+                            postAnswer();
+                        }}
+                    >
+                        Post Answer
+                    </button>
+                    <div className="mandatory_indicator">
+                        * indicates mandatory fields
+                    </div>
+                </div>
+            </Form>
+        </div>
     );
 };
 

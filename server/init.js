@@ -2,6 +2,7 @@
 let Tag = require('./models/tags')
 let Answer = require('./models/answers')
 let Question = require('./models/questions')
+let Account = require('./models/accounts')
 
 const mongoose = require("mongoose");
 
@@ -12,9 +13,14 @@ mongoose.connect(MONGO_URL);
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-function tagCreate(name) {
+  function tagCreate(name) {
     let tag = new Tag({ name: name });
     return tag.save();
+  }
+
+  function accountCreate(username, password, name) {
+    let account = new Account({ username: username, password: password, name: name });
+    return account.save();
   }
   
   function answerCreate(text, ans_by, ans_date_time) {
@@ -61,7 +67,8 @@ const init = async () => {
     await questionCreate('android studio save string shared preference, start activity and load the saved string', 'I am using bottom navigation view but am using custom navigation, so my fragments are not recreated every time i switch to a different view. I just hide/show my fragments depending on the icon selected. The problem i am facing is that whenever a config change happens (dark/light theme), my app crashes. I have 2 fragments in this activity and the below code is what i am using to refrain them from being recreated.', [t3, t4, t2], [a3, a4, a5], 'saltyPeter', new Date('2023-01-10T11:24:30'), 121);
     await questionCreate('Object storage for a web application', 'I am currently working on a website where, roughly 40 million documents and images should be served to its users. I need suggestions on which method is the most suitable for storing content with subject to these requirements.', [t5, t6], [a6, a7], 'monkeyABC', new Date('2023-02-18T01:02:15'), 200);
     await questionCreate('Quick question about storage on android', 'I would like to know the best way to go about storing an array on an android phone so that even when the app/activity ended the data remains', [t3, t4, t5], [a8], 'elephantCDE', new Date('2023-03-10T14:28:01'), 103);
-    console.log('insert test data into the database')
+    await accountCreate("jeffrey123", "123", "Jeffrey Chen");
+    console.log('insert test data into the database');
     if (db) db.close();
     console.log("done");
 };

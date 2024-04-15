@@ -1,6 +1,5 @@
 import "./index.css";
 import { useState } from "react";
-import Signup from "./signup"
 
 const Header = ({ search, setQuestionPage }) => {
     const [val, setVal] = useState(search);
@@ -24,32 +23,6 @@ const Header = ({ search, setQuestionPage }) => {
                     }
                 }}
             />
-            <div id="login" className="login_btn_group">
-                <button
-                    className="bluebtn"
-                    id="signupbtn"
-                    onClick={() => {
-                        signupPage( setQuestionPage );
-                    }}> 
-                        Signup
-                </button>
-                <button
-                    className="bluebtn"
-                    id="loginbtn"
-                    onClick={() => {
-                        // loginPage();
-                    }}> 
-                        Login
-                </button>
-                <button
-                    className="bluebtn"
-                    id="logoutbtn"
-                    onClick={() => {
-                        // logoutPage();
-                    }}> 
-                        Logout
-                </button>
-            </div>
         </div>
     );
 };

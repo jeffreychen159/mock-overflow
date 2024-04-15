@@ -9,13 +9,10 @@ const router = express.Router();
 // To get Questions by Filter
 const getQuestionsByFilter = async (req, res) => {
     let content = req.query;
-    console.log(content);
     
     let f = await getQuestionsByOrder(content.order);
 
     let s = await filterQuestionsBySearch(f, content.search);
-
-    console.log(s);
 
     res.send(s);
 };
@@ -23,8 +20,6 @@ const getQuestionsByFilter = async (req, res) => {
 // To get Questions by Id
 const getQuestionById = async (req, res) => {
     let question = await Question.findOneAndUpdate({_id: req.params.qid}, {$inc: {views: 1}}).populate({path: 'answers'});
-
-    console.log(question.answers);
     
     res.send(question);
 };

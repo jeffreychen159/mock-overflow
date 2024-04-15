@@ -4,7 +4,9 @@ import Form from "../baseComponents/form";
 import Input from "../baseComponents/input";
 import "./index.css";
 
-const Signup = ({ setQuestionPage }) => {
+import { addAccount } from "../../../services/accountService";
+
+const Signup = ({ handleQuestions }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -13,7 +15,7 @@ const Signup = ({ setQuestionPage }) => {
     const [passwordErr, setPasswordErr] = useState("");
     const [nameErr, setNameErr] = useState("");
 
-    const createAcc = async() => {
+    const createAccount = async () => {
         let isValid = true;
         if (!username) {
             setUsernameErr("Username cannot be empty");
@@ -42,8 +44,9 @@ const Signup = ({ setQuestionPage }) => {
 
         const res = await addAccount(account);
         if (res && res._id) {
-            setQuestionPage();
+            handleQuestions();
         }
+    }
         
         return (
             <Form>
@@ -72,7 +75,7 @@ const Signup = ({ setQuestionPage }) => {
                 <button
                     className="form_postBtn"
                     onClick={() => {
-                        createAcc();
+                        createAccount();
                     }}
                 >
                     Create Account
@@ -83,7 +86,6 @@ const Signup = ({ setQuestionPage }) => {
             </div>
             </Form>
         )
-    }
 }
 
 export default Signup;
