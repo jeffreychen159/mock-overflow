@@ -1,23 +1,15 @@
 import "./index.css";
 import { useState } from "react";
 import Form from "../baseComponents/form";
-import Input from "../baseComponents/input";
 import Textarea from "../baseComponents/textarea";
 import { validateHyperlink } from "../../../tool";
 import { addAnswer } from "../../../services/answerService";
 
-const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout }) => {
-    const [usrn, setUsrn] = useState("");
+const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout, account }) => {
     const [text, setText] = useState("");
-    const [usrnErr, setUsrnErr] = useState("");
     const [textErr, setTextErr] = useState("");
     const postAnswer = async () => {
         let isValid = true;
-
-        if (!usrn) {
-            setUsrnErr("Username cannot be empty");
-            isValid = false;
-        }
 
         if (!text) {
             setTextErr("Answer text cannot be empty");
@@ -36,7 +28,7 @@ const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout 
 
         const answer = {
             text: text,
-            ans_by: usrn,
+            ans_by: account,
             ans_date_time: new Date(),
         };
 
@@ -60,7 +52,11 @@ const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout 
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        handleLogin();
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
                     }}>
                     Login
                 </button>
@@ -77,13 +73,6 @@ const NewAnswer = ({ qid, handleAnswer, handleSignup, handleLogin, handleLogout 
                 &nbsp;
             </div>
             <Form>
-                <Input
-                    title={"Username"}
-                    id={"answerUsernameInput"}
-                    val={usrn}
-                    setState={setUsrn}
-                    err={usrnErr}
-                />
                 <Textarea
                     title={"Answer Text"}
                     id={"answerTextInput"}

@@ -7,16 +7,14 @@ import { validateHyperlink } from "../../../tool";
 
 import { addQuestion } from "../../../services/questionService";
 
-const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout }) => {
+const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout, account }) => {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [tag, setTag] = useState("");
-    const [usrn, setUsrn] = useState("");
 
     const [titleErr, setTitleErr] = useState("");
     const [textErr, setTextErr] = useState("");
     const [tagErr, setTagErr] = useState("");
-    const [usrnErr, setUsrnErr] = useState("");
 
     const postQuestion = async () => {
         let isValid = true;
@@ -56,11 +54,6 @@ const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout 
             }
         }
 
-        if (!usrn) {
-            setUsrnErr("Username cannot be empty");
-            isValid = false;
-        }
-
         if (!isValid) {
             return;
         }
@@ -69,7 +62,7 @@ const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout 
             title: title,
             text: text,
             tags: tags,
-            asked_by: usrn,
+            asked_by: account,
             ask_date_time: new Date(),
         };
 
@@ -94,7 +87,11 @@ const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout 
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        handleLogin();
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
                     }}>
                     Login
                 </button>
@@ -134,13 +131,6 @@ const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout 
                     val={tag}
                     setState={setTag}
                     err={tagErr}
-                />
-                <Input
-                    title={"Username"}
-                    id={"formUsernameInput"}
-                    val={usrn}
-                    setState={setUsrn}
-                    err={usrnErr}
                 />
                 <div className="btn_indicator_container">
                     <button

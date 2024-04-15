@@ -7,7 +7,7 @@ import QuestionBody from "./questionBody";
 import { getQuestionById } from "../../../services/questionService";
 
 // Component for the Answers page
-const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, handleLogin, handleLogout }) => {
+const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, handleLogin, handleLogout, account }) => {
     const [question, setQuestion] = useState({});
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +32,11 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, han
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        handleLogin();
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
                     }}> 
                         Login
                 </button>
@@ -51,6 +55,7 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, han
                 }
                 title={question && question.title}
                 handleNewQuestion={handleNewQuestion}
+                account={account}
             />
             <QuestionBody
                 views={question && question.views}
@@ -71,7 +76,11 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, han
             <button
                 className="bluebtn ansButton"
                 onClick={() => {
-                    handleNewAnswer();
+                    if (account) {
+                        handleNewAnswer();
+                    } else {
+                        alert("Please log in to answer a question");
+                    }
                 }}
             >
                 Answer Question

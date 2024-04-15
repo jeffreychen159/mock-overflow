@@ -3,7 +3,7 @@ import "./index.css";
 import Tag from "./tag";
 import { getTagsWithQuestionNumber } from "../../../services/tagService";
 
-const TagPage = ({ clickTag, handleNewQuestion, handleSignup, handleLogin, handleLogout }) => {
+const TagPage = ({ clickTag, handleNewQuestion, handleSignup, handleLogin, handleLogout, account }) => {
     const [tlist, setTlist] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +28,11 @@ const TagPage = ({ clickTag, handleNewQuestion, handleSignup, handleLogin, handl
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        handleLogin();
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
                     }}> 
                         Login
                 </button>
@@ -47,7 +51,11 @@ const TagPage = ({ clickTag, handleNewQuestion, handleSignup, handleLogin, handl
                 <button
                     className="bluebtn"
                     onClick={() => {
-                        handleNewQuestion();
+                        if (account) {
+                            handleNewQuestion();
+                        } else {
+                            alert("Please log in to ask a question");
+                        }
                     }}
                 >
                     Ask a Question

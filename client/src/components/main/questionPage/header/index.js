@@ -9,6 +9,7 @@ const QuestionHeader = ({
     handleSignup,
     handleLogin,
     handleLogout, 
+    account,
 }) => {
     return (
         <div>
@@ -25,7 +26,11 @@ const QuestionHeader = ({
                     className="bluebtn_login"
                     id="loginbtn"
                     onClick={() => {
-                        handleLogin();
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
                     }}> 
                         Login
                 </button>
@@ -46,7 +51,11 @@ const QuestionHeader = ({
                 <button
                     className="bluebtn"
                     onClick={() => {
-                        handleNewQuestion();
+                        if (account) {
+                            handleNewQuestion();
+                        } else {
+                            alert("Please log in to ask a question");
+                        }
                     }}
                 >
                     Ask a Question

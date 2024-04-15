@@ -41,7 +41,6 @@ const Login = ({ handleNewLogin }) => {
         }
         
     }
-    
 
     return (
         <Form>

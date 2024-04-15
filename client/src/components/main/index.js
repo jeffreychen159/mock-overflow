@@ -75,6 +75,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                 handleSignup={handleSignup}
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
+                account={account}
             />
         );
     };
@@ -94,6 +95,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     handleSignup={handleSignup}
                     handleLogin={handleLogin}
                     handleLogout={handleLogout}
+                    account={account}
                 />
             );
             break;
@@ -108,6 +110,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     handleSignup={handleSignup}
                     handleLogin={handleLogin}
                     handleLogout={handleLogout}
+                    account={account}
                 />
             );
             break;
@@ -120,6 +123,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     handleSignup={handleSignup}
                     handleLogin={handleLogin}
                     handleLogout={handleLogout}
+                    account={account}
                 />;
             break;
         }
@@ -132,6 +136,7 @@ const Main = ({ search = "", title, setQuestionPage }) => {
                     handleSignup={handleSignup} 
                     handleLogin={handleLogin}
                     handleLogout={handleLogout}
+                    account={account}
                 />;
             break;
         }
@@ -144,7 +149,10 @@ const Main = ({ search = "", title, setQuestionPage }) => {
 
         case "login": {
             selected = "";
-            content = <Login handleNewLogin={handleNewLogin} />
+            content = 
+                <Login 
+                    handleNewLogin={handleNewLogin}
+                    account={account} />
             break;
         }
         default:
