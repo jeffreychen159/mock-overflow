@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const tag = require("./tag");
 
 // Schema for questions
 module.exports = mongoose.Schema(

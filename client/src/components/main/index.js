@@ -6,18 +6,27 @@ import TagPage from "./tagPage";
 import AnswerPage from "./answerPage";
 import NewQuestion from "./newQuestion";
 import NewAnswer from "./newAnswer";
+import Signup from "./account/signup";
+import Login from "./account/login";
 
-const Main = ({ search = "", title, setQuesitonPage }) => {
+const Main = ({ search = "", title, setQuestionPage }) => {
     const [page, setPage] = useState("home");
     const [questionOrder, setQuestionOrder] = useState("newest");
     const [qid, setQid] = useState("");
+    const [account, setAccount] = useState("");
     let selected = "";
     let content = null;
 
     const handleQuestions = () => {
-        setQuesitonPage();
+        setQuestionPage();
         setPage("home");
     };
+
+    const handleNewLogin = (login) => {
+        setQuestionPage();
+        setAccount(login);
+        setPage("home");
+    }
 
     const handleTags = () => {
         setPage("tag");
@@ -29,7 +38,7 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
     };
 
     const clickTag = (tname) => {
-        setQuesitonPage("[" + tname + "]", tname);
+        setQuestionPage("[" + tname + "]", tname);
         setPage("home");
     };
 
@@ -41,6 +50,18 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
         setPage("newAnswer");
     };
 
+    const handleSignup = () => {
+        setPage("signup");
+    }
+
+    const handleLogin = () => {
+        setPage("login");
+    }
+
+    const handleLogout = () => {
+        setAccount("");
+    }
+
     const getQuestionPage = (order = "newest", search = "") => {
         return (
             <QuestionPage
@@ -51,6 +72,10 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
                 clickTag={clickTag}
                 handleAnswer={handleAnswer}
                 handleNewQuestion={handleNewQuestion}
+                handleSignup={handleSignup}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                account={account}
             />
         );
     };
@@ -67,6 +92,10 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
                 <TagPage
                     clickTag={clickTag}
                     handleNewQuestion={handleNewQuestion}
+                    handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
+                    account={account}
                 />
             );
             break;
@@ -78,18 +107,52 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
                     qid={qid}
                     handleNewQuestion={handleNewQuestion}
                     handleNewAnswer={handleNewAnswer}
+                    handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
+                    account={account}
                 />
             );
             break;
         }
         case "newQuestion": {
             selected = "";
-            content = <NewQuestion handleQuestions={handleQuestions} />;
+            content = 
+                <NewQuestion 
+                    handleQuestions={handleQuestions} 
+                    handleSignup={handleSignup}
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
+                    account={account}
+                />;
             break;
         }
         case "newAnswer": {
             selected = "";
-            content = <NewAnswer qid={qid} handleAnswer={handleAnswer} />;
+            content = 
+                <NewAnswer 
+                    qid={qid} 
+                    handleAnswer={handleAnswer}
+                    handleSignup={handleSignup} 
+                    handleLogin={handleLogin}
+                    handleLogout={handleLogout}
+                    account={account}
+                />;
+            break;
+        }
+
+        case "signup": {
+            selected = "";
+            content = <Signup handleQuestions={handleQuestions} />
+            break;
+        }
+
+        case "login": {
+            selected = "";
+            content = 
+                <Login 
+                    handleNewLogin={handleNewLogin}
+                    account={account} />
             break;
         }
         default:
@@ -104,6 +167,7 @@ const Main = ({ search = "", title, setQuesitonPage }) => {
                 selected={selected}
                 handleQuestions={handleQuestions}
                 handleTags={handleTags}
+                account={account}
             />
             <div id="right_main" className="right_main">
                 {content}

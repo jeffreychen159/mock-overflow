@@ -1,6 +1,5 @@
 const Tag = require("../models/tags");
 const Question = require("../models/questions");
-const Answer = require("../models/answers");
 
 const addTag = async (tname) => {
     let tags = await Tag.findOne({name: tname});
@@ -16,7 +15,7 @@ const addTag = async (tname) => {
 };
 
 const getQuestionsByOrder = async (order) => {
-    let questions = await Question.find().populate();
+    let questions = await Question.find().populate({path: "tags"});
 
     let q = [];
     if (order == 'newest') {
@@ -25,12 +24,12 @@ const getQuestionsByOrder = async (order) => {
         ));
     } else if (order == 'active') {
         q = questions.filter((q) => (q.answers.length > 0));
-        qn = questions.filter((q) => (q.answers.length == 0));
+        let qn = questions.filter((q) => (q.answers.length == 0));
 
         let ansList = [];
 
         for (let b of q) {
-            currDate = new Date(-8640000000000000);
+            let currDate = new Date(-8640000000000000);
             for (let c of b.answers) {
                 if (c.ans_date_time > currDate) {
                     currDate = c.ans_date_time;
@@ -62,7 +61,7 @@ const getQuestionsByOrder = async (order) => {
     return q;
 }
 
-const filterQuestionsBySearch = (qlist, search = "") => {
+const filterQuestionsBySearch = async (qlist, search = "") => {
     if (search.length == 0) {
         return qlist;
     }

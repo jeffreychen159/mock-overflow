@@ -8,11 +8,11 @@ const router = express.Router();
 
 // To get Questions by Filter
 const getQuestionsByFilter = async (req, res) => {
-    let content = req.body;
+    let content = req.query;
+    
+    let f = await getQuestionsByOrder(content.order);
 
-    const questions = await Question.find().populate({path: 'tags'});
-
-    let s = filterQuestionsBySearch(questions, content.search);
+    let s = await filterQuestionsBySearch(f, content.search);
 
     res.send(s);
 };
@@ -20,8 +20,6 @@ const getQuestionsByFilter = async (req, res) => {
 // To get Questions by Id
 const getQuestionById = async (req, res) => {
     let question = await Question.findOneAndUpdate({_id: req.params.qid}, {$inc: {views: 1}}).populate({path: 'answers'});
-
-    console.log(question.answers);
     
     res.send(question);
 };
@@ -30,13 +28,18 @@ const getQuestionById = async (req, res) => {
 const addQuestion = async (req, res) => {
     let content = req.body;
 
-    console.log(content);
+    let tagIdList = [];
+
+    for (let t of content.tags) {
+        tagIdList.push(await addTag(t));
+    }
 
     let newQuestion = await Question.create({
         title: content.title,
         text: content.text,
+        asked_by: content.asked_by, 
         answers: content.answers, 
-        tags: content.tags, 
+        tags: tagIdList, 
         ask_date_time: new Date(),
         views: 0,
     });

@@ -1,8 +1,11 @@
 import "./index.css";
 
-const SideBarNav = ({ selected = "", handleQuestions, handleTags }) => {
+const SideBarNav = ({ selected = "", handleQuestions, handleTags, account }) => {
     return (
         <div id="sideBarNav" className="sideBarNav">
+            <div id="profile" className="header_login">
+                Welcome {account}
+            </div>
             <div
                 id="menu_question"
                 className={`menu_button ${

@@ -1,8 +1,9 @@
 import "./index.css";
 import { useState } from "react";
 
-const Header = ({ search, setQuesitonPage }) => {
+const Header = ({ search, setQuestionPage }) => {
     const [val, setVal] = useState(search);
+
     return (
         <div id="header" className="header">
             <div></div>
@@ -18,7 +19,7 @@ const Header = ({ search, setQuesitonPage }) => {
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
                         e.preventDefault();
-                        setQuesitonPage(e.target.value, "Search Results");
+                        setQuestionPage(e.target.value, "Search Results");
                     }
                 }}
             />

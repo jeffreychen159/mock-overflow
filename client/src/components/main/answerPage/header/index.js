@@ -1,7 +1,7 @@
 import "./index.css";
 
 // Header for the Answer page
-const AnswerHeader = ({ ansCount, title, handleNewQuestion }) => {
+const AnswerHeader = ({ ansCount, title, handleNewQuestion, account }) => {
     return (
         <div id="answersHeader" className="space_between right_padding">
             <div className="bold_title">{ansCount} answers</div>
@@ -9,7 +9,11 @@ const AnswerHeader = ({ ansCount, title, handleNewQuestion }) => {
             <button
                 className="bluebtn"
                 onClick={() => {
-                    handleNewQuestion();
+                    if (account) {
+                        handleNewQuestion();
+                    } else {
+                        alert("Please log in to answer a question");
+                    }
                 }}
             >
                 Ask a Question

@@ -7,16 +7,14 @@ import { validateHyperlink } from "../../../tool";
 
 import { addQuestion } from "../../../services/questionService";
 
-const NewQuestion = ({ handleQuestions }) => {
+const NewQuestion = ({ handleQuestions, handleSignup, handleLogin, handleLogout, account }) => {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [tag, setTag] = useState("");
-    const [usrn, setUsrn] = useState("");
 
     const [titleErr, setTitleErr] = useState("");
     const [textErr, setTextErr] = useState("");
     const [tagErr, setTagErr] = useState("");
-    const [usrnErr, setUsrnErr] = useState("");
 
     const postQuestion = async () => {
         let isValid = true;
@@ -56,11 +54,6 @@ const NewQuestion = ({ handleQuestions }) => {
             }
         }
 
-        if (!usrn) {
-            setUsrnErr("Username cannot be empty");
-            isValid = false;
-        }
-
         if (!isValid) {
             return;
         }
@@ -69,7 +62,7 @@ const NewQuestion = ({ handleQuestions }) => {
             title: title,
             text: text,
             tags: tags,
-            asked_by: usrn,
+            asked_by: account,
             ask_date_time: new Date(),
         };
 
@@ -80,52 +73,80 @@ const NewQuestion = ({ handleQuestions }) => {
     };
 
     return (
-        <Form>
-            <Input
-                title={"Question Title"}
-                hint={"Limit title to 100 characters or less"}
-                id={"formTitleInput"}
-                val={title}
-                setState={setTitle}
-                err={titleErr}
-            />
-            <Textarea
-                title={"Question Text"}
-                hint={"Add details"}
-                id={"formTextInput"}
-                val={text}
-                setState={setText}
-                err={textErr}
-            />
-            <Input
-                title={"Tags"}
-                hint={"Add keywords separated by whitespace"}
-                id={"formTagInput"}
-                val={tag}
-                setState={setTag}
-                err={tagErr}
-            />
-            <Input
-                title={"Username"}
-                id={"formUsernameInput"}
-                val={usrn}
-                setState={setUsrn}
-                err={usrnErr}
-            />
-            <div className="btn_indicator_container">
+        <div>
+            <div id="login" className="header_button">
                 <button
-                    className="form_postBtn"
+                    className="bluebtn_login"
+                    id="signupbtn"
                     onClick={() => {
-                        postQuestion();
-                    }}
-                >
-                    Post Question
+                        handleSignup();
+                    }}>
+                    Signup
                 </button>
-                <div className="mandatory_indicator">
-                    * indicates mandatory fields
-                </div>
+                <button
+                    className="bluebtn_login"
+                    id="loginbtn"
+                    onClick={() => {
+                        if (account) {
+                            alert(`You are logged in as ${account}`)
+                        } else {
+                            handleLogin();
+                        }
+                    }}>
+                    Login
+                </button>
+                <button
+                    className="bluebtn_login"
+                    id="logoutbtn"
+                    onClick={() => {
+                        handleLogout();
+                    }}>
+                    Logout
+                </button>
             </div>
-        </Form>
+            <div className="header_buffer">
+                &nbsp;
+            </div>
+            <Form>
+                <Input
+                    title={"Question Title"}
+                    hint={"Limit title to 100 characters or less"}
+                    id={"formTitleInput"}
+                    val={title}
+                    setState={setTitle}
+                    err={titleErr}
+                />
+                <Textarea
+                    title={"Question Text"}
+                    hint={"Add details"}
+                    id={"formTextInput"}
+                    val={text}
+                    setState={setText}
+                    err={textErr}
+                />
+                <Input
+                    title={"Tags"}
+                    hint={"Add keywords separated by whitespace"}
+                    id={"formTagInput"}
+                    val={tag}
+                    setState={setTag}
+                    err={tagErr}
+                />
+                <div className="btn_indicator_container">
+                    <button
+                        className="form_postBtn"
+                        onClick={() => {
+                            postQuestion();
+                        }}
+                    >
+                        Post Question
+                    </button>
+                    <div className="mandatory_indicator">
+                        * indicates mandatory fields
+                    </div>
+                </div>
+            </Form>
+        </div>
     );
 };
 
