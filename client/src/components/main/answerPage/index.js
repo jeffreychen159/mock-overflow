@@ -57,6 +57,7 @@ const AnswerPage = ({ qid, handleNewQuestion, handleNewAnswer, handleSignup, han
                 handleNewQuestion={handleNewQuestion}
                 account={account}
             />
+            
             <QuestionBody
                 views={question && question.views}
                 text={question && question.text}

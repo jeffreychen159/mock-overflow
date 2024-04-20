@@ -1,3 +1,15 @@
 .answer_question_title {
     max-width: 60%;
 }
+
+.voting_button_html {
+    padding-left: 0px;
+}
+
+.voting_button {
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    border:none;
+    background-color:lightgrey;
+    }
