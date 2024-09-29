@@ -6,12 +6,14 @@ This was a project done in collaboration with Kyra Riedal. In this project, we i
 
 ## Software and Architecture
 
+This UML Diagram represents our code and the software used to implement each feature of our code. 
+
 ![Architecture](images/architecture.PNG)
 
 ## Security Mechanisms
 
-1. Question tampering: By using an account service and requiring users to login to use the program, it ensures that nobody except the post owner can tamper with a post. 
-2. Account spoofing: By hashing a password, we can ensure that when a password is saved to the system, it is encrypted. Furthermore, when logging in, a unique identifier is attached to the account to ensure that nobody else can sniff account information and it ensures that the current instance is the only one logged in. 
+1. **Question tampering:** By using an account service and requiring users to login to use the program, it ensures that nobody except the post owner can tamper with a post. 
+2. **Account spoofing:** By hashing a password, we can ensure that when a password is saved to the system, it is encrypted. Furthermore, when logging in, a unique identifier is attached to the account to ensure that nobody else can sniff account information and it ensures that the current instance is the only one logged in. 
 
 ## Development Process
 
