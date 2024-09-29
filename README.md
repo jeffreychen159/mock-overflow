@@ -21,19 +21,39 @@ An agile development workflow was used to accommodate frequent changes that may 
 
 ## Usage
 
-1. Installing dependencies: Make sure to install npm to both the server and the client
+1. Installing dependencies: Make sure Node.js is installed and MongoDB. 
 
-    In the root directory: 
-    ```
-    $ cd client/
-    $ npm install
-    $ cd server/
-    $ npm install
-    ```
-2. 
+In the root directory: 
+```
+$ cd client/
+$ npm install
+$ cd server/
+$ npm install
+```
+In the server directory: 
+```
+$ cd server/
+$ npm install express
+$ npm install mongoose
+$ npm install -g nodemon
+```
+
+2. Starting the server: Make sure that MongoDB is running through the cmd. By default, MongoDB will run on 127.0.0.1, port 27017. Remember to configure populate_db.js to ensure that it is properly connected to mongoose. 
+
+Populate the database from the root: 
+```
+$ node server/populate_db.js
+```
+
+Starting the program from the root: 
+```
+$ npm start
+```
 
 ## Conclusion
 
-In conclusion, the Mock Overflow project successfully implemented a platform where users can interact by posting questions and answers, voting, and more. Incorporating an agile development workflow allowed us to develop independently, but also work as a team to solve issues that arise in the code. Furthermore, it honed our skills where code would be written clearly to ensure readibility between us. 
+In conclusion, the Mock Overflow project successfully implemented a platform where users can interact by posting questions and answers, voting, and more. By adopting an agile development workflow, we were able to work autonomously while also coming together to resolve any issues that emerged during the development process. This approach allowed us to sharpen our skills in writing clean, readable code, ensuring efficient communication is shared between us. 
 
-Outside of the development process, the requirements for security taught us to think about our development outside of functionality. By implementing different security features, it allowed the users to   
+Beyond the core functionality, the focus on security has changed the way we approach development. It has taught us to consider not just the functionality of the program but how it performs in the face of potential threats. This form of security-driven development required us to identify vulnerabilities that in other projects, we may not have thought of. Furthermore, the implementation of security allowed us to design with long-term sustainability and scalability in mind, ensuring that we develop to be resilient to evolving cyber threats. 
+
+Overall, our work with Mock Overflow allowed us to learn a lot more about development where some projects don't. By prioritizing both autonomous development and collaborative reviews through the agile development method, we were able to create a simple platform that was both functional and secure. This allowed us to contribute our unique skills and come together to solve challenges as a team. In the future, we hope to include more features, while cleaning up old ones, and to include a more modern UI into our platform. 
