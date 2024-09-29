@@ -2,11 +2,11 @@
 
 This was a project done in collaboration with Kyra Riedal. In this project, we implemented a Mock Overflow platform where users similar to Stack Overflow, can post questions and answers, vote on posts, vote on questions, and many more features. 
 
-
+![Home](images/home_screen2.PNG)
 
 ## Software and Architecture
 
-
+![Architecture](images/architecture.PNG)
 
 ## Security Mechanisms
 
