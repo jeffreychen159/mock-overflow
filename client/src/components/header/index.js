@@ -7,7 +7,7 @@ const Header = ({ search, setQuestionPage }) => {
     return (
         <div id="header" className="header">
             <div></div>
-            <div className="title">Fake Stack Overflow</div>
+            <div className="title">Mock Overflow</div>
             <input
                 id="searchBar"
                 placeholder="Search ..."
