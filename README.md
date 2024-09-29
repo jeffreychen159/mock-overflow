@@ -21,7 +21,7 @@ An agile development workflow was used to accommodate frequent changes that may 
 
 ## Usage
 
-1. Installing dependencies: Make sure Node.js is installed and MongoDB. 
+1. **Installing Dependencies:** Make sure Node.js is installed and MongoDB. 
 
   In the root directory: 
   ```
@@ -37,7 +37,7 @@ An agile development workflow was used to accommodate frequent changes that may 
   $ npm install mongoose
   $ npm install -g nodemon
   ```
-2. Starting the server: Make sure that MongoDB is running through the cmd. By default, MongoDB will run on 127.0.0.1, port 27017. Remember to configure populate_db.js to ensure that it is properly connected to mongoose. 
+2. **Starting the Server:** Make sure that MongoDB is running through the cmd. By default, MongoDB will run on 127.0.0.1, port 27017. Remember to configure populate_db.js to ensure that it is properly connected to mongoose. 
 
   Populate the database from the root: 
   ```
