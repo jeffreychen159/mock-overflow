@@ -24,31 +24,30 @@ An agile development workflow was used to accommodate frequent changes that may 
 1. Installing dependencies: Make sure Node.js is installed and MongoDB. 
 
   In the root directory: 
-```
-$ cd client/
-$ npm install
-$ cd server/
-$ npm install
-```
+  ```
+  $ cd client/
+  $ npm install
+  $ cd server/
+  $ npm install
+  ```
   In the server directory: 
-```
-$ cd server/
-$ npm install express
-$ npm install mongoose
-$ npm install -g nodemon
-```
-
+  ```
+  $ cd server/
+  $ npm install express
+  $ npm install mongoose
+  $ npm install -g nodemon
+  ```
 2. Starting the server: Make sure that MongoDB is running through the cmd. By default, MongoDB will run on 127.0.0.1, port 27017. Remember to configure populate_db.js to ensure that it is properly connected to mongoose. 
 
   Populate the database from the root: 
-```
-$ node server/populate_db.js
-```
+  ```
+  $ node server/populate_db.js
+  ```
 
   Starting the program from the root: 
-```
-$ npm start
-```
+  ```
+  $ npm start
+  ```
 
 ## Conclusion
 
